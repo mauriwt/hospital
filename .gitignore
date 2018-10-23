@@ -1,0 +1,39 @@
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle
+
+.gradle/
+.vscode/
+.settings/
+.classpath
+.project
+.springBeans
+target/
+.tern-project
+Users/
+bin/
+WEB-INF/
+### ANGUGAR ###
+src/main/resources/static
+

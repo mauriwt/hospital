@@ -1,0 +1,73 @@
+databaseChangeLog:
+- changeSet:
+    id: Tabla catálogo
+    author: Fabian (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: cat_codigo
+            type: VARCHAR(4)
+        - column:
+            name: cat_nombre
+            type: VARCHAR(20)
+        - column:
+            name: cat_descripcion
+            type: TEXT
+        tableName: catalogo
+- changeSet:
+    id: Tabla ítems
+    author: Fabian (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: ite_codigo
+            type: VARCHAR(4)
+        - column:
+            name: cat_codigo
+            type: VARCHAR(4)
+        - column:
+            name: ite_nombre
+            type: VARCHAR(100)
+        - column:
+            name: ite_clasificacion
+            type: VARCHAR(20)
+        - column:
+            name: ite_padre
+            type: VARCHAR(4)
+        tableName: item
+- changeSet:
+    id: primary key catálogo
+    author: Fabian (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: cat_codigo
+        constraintName: pk_zed_catalogo
+        tableName: catalogo
+- changeSet:
+    id: primary key ítem
+    author: Fabian (generated)
+    changes:
+    - addPrimaryKey:
+        columnNames: ite_codigo
+        constraintName: pk_zed_item
+        tableName: item
+- changeSet:
+    id: foreng key ítem
+    author: Fabian (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: cat_codigo
+        baseTableName: item
+        constraintName: fk_zed_item_reference_zed_cata
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: cat_codigo
+        referencedTableName: catalogo
