@@ -59,7 +59,8 @@ dependencies {
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.24.0.RELEASE'
     compile group: 'com.openkm', name: 'sdk4j', version: '2.3'
     compileOnly 'org.projectlombok:lombok:1.18.0'
-    compile group: 'net.bull.javamelody', name: 'javamelody-spring-boot-starter', version: '1.72.0'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.6.RELEASE'
+    //compile group: 'net.bull.javamelody', name: 'javamelody-spring-boot-starter', version: '1.72.0'
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     
     //runtime('org.springframework.boot:spring-boot-devtools')

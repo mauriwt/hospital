@@ -9,27 +9,29 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="catalogos")
+@Table(name="catalogo")
 @NamedQuery(name="Catalogo.findAll", query="SELECT c FROM Catalogo c")
 public class Catalogo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name="cat_codigo")
+	private String id;
 
+	@Column(name="cat_nombre")
 	private String nombre;
 
+	@Column(name="cat_descripcion")
 	private String tipo;
 
 	public Catalogo() {
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

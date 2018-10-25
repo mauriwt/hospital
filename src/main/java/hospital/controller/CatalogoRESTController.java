@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ public class CatalogoRESTController {
   private CatalogoRepo catalogoRepo;
 
   
-  //@PreAuthorize("#oauth2.hasScope('base.scope.action')")
+  @PreAuthorize("#oauth2.hasScope('hp.catalogo.get')")
   @RequestMapping(method=RequestMethod.GET)
   public List<Catalogo> getCatalogo()
   {
@@ -42,8 +43,9 @@ public class CatalogoRESTController {
   }
   
   //@PreAuthorize("#oauth2.hasScope('base.scope.action')")
-  @RequestMapping(value="{id}" ,method=RequestMethod.GET)
-  public Catalogo getOneCatalogo(@PathVariable("id") int id)
+  @PreAuthorize("hasAuthority('hp.catalogo.get')")
+  @RequestMapping(value="/{id}" ,method=RequestMethod.GET)
+  public Catalogo getOneCatalogo(@PathVariable("id") String id)
   {
     return this.catalogoRepo.findOne(id);
   }
@@ -63,7 +65,7 @@ public class CatalogoRESTController {
   }
   
   @RequestMapping(value="{id}" ,method=RequestMethod.PUT)
-  public ResponseEntity<?> updateCatalogo(@PathVariable("id") int id, @RequestBody @Valid Catalogo catalogo, Errors errors)
+  public ResponseEntity<?> updateCatalogo(@PathVariable("id") String id, @RequestBody @Valid Catalogo catalogo, Errors errors)
   {
     try {
       if(errors.hasErrors())
@@ -80,7 +82,7 @@ public class CatalogoRESTController {
   }
   
   @RequestMapping(value="{id}" ,method=RequestMethod.DELETE)
-  public ResponseEntity<?> deleteCatalogo(@PathVariable("id") int id)
+  public ResponseEntity<?> deleteCatalogo(@PathVariable("id") String id)
   {
     try {
       
@@ -95,7 +97,7 @@ public class CatalogoRESTController {
     }
   }
   
-  private boolean verificarExistencia(int id){
+  private boolean verificarExistencia(String id){
     return this.catalogoRepo.findOne(id) != null;
   }
   

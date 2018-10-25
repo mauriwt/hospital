@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import hospital.model.Catalogo;
 
 @Repository
-public interface CatalogoRepo extends JpaRepository<Catalogo, Integer>{
+public interface CatalogoRepo extends JpaRepository<Catalogo, String>{
 
   @Query("SELECT c FROM Catalogo c WHERE c.tipo = :tipo")
   public List<Catalogo> getCatalogoByTipo(@Param("tipo") String tipo);
